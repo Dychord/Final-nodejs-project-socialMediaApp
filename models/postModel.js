@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-mongoose.connect("mongodb://127.0.0.1:27017/Final-nodejs-project").then((res)=> console.log("DB connected"))
+mongoose.connect("mongodb://127.0.0.1:27017/Final-nodejs-project").then((res)=> console.log("Post DB connected"))
 
 const postSchema = new mongoose.Schema({
     userId:{
