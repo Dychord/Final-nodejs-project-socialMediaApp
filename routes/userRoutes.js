@@ -9,9 +9,9 @@ router.get("/login", (req,res)=>{
     res.render("login")
 })
 
-router.get("/dashboard", isAuth,async (req,res)=>{
+router.get("/dashboard",async (req,res)=>{
     let user = await userModel.findById(req.session.userId)
-    res.render("dashboard",{user})
+    res.render("dashboard")
 })
 
 module.exports = router

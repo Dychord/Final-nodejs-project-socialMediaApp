@@ -35,27 +35,61 @@
         <!-- Main content -->
         <main class="flex-1 p-6">
             <header class="mb-6">
-                <h1 class="text-2xl font-bold text-gray-900">Welcome, <%= user.username %></h1>
+                <h1 class="text-2xl font-bold text-gray-900">Welcome, user</h1>
                 <p class="mt-1 text-gray-600">Here’s an overview of your dashboard.</p>
             </header>
             
-            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <h3 class="text-lg font-semibold text-gray-900">Overview</h3>
-                    <p class="mt-2 text-gray-600">A brief overview of your recent activities and stats.</p>
-                </div>
-                
-                <!-- Card 2 -->
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
-                    <p class="mt-2 text-gray-600">Recent notifications and alerts relevant to your account.</p>
-                </div>
-                
-                <!-- Card 3 -->
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <h3 class="text-lg font-semibold text-gray-900">Quick Actions</h3>
-                    <p class="mt-2 text-gray-600">Quick links to commonly used actions and settings.</p>
+            <!-- Post Section -->
+            <section class="mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Create a Post</h2>
+                <form action="/posts" method="POST" class="bg-white shadow-md rounded-lg p-4">
+                    <textarea
+                        name="content"
+                        rows="4"
+                        placeholder="What's on your mind?"
+                        class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400"
+                    ></textarea>
+                    <button
+                        type="submit"
+                        class="mt-4 inline-flex items-center justify-center rounded-md bg-black px-4 py-2 text-white hover:bg-black/80"
+                    >
+                        Post
+                    </button>
+                </form>
+            </section>
+
+            <!-- Posts Display -->
+            <section>
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Posts</h2>
+                <div class="bg-white shadow-md rounded-lg p-4 mb-4">
+                    <p class="text-gray-900">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum deleniti quo labore voluptatum iste! Saepe, repellat tenetur. Deleniti, minus, </p>
+                    <div class="mt-2 flex items-center justify-between">
+                        <div class="text-gray-600">
+                            <span>0 Likes</span>
+                        </div>
+                        <a href="#" class="text-blue-500 hover:underline">Comments </a>
+                    </div>
+                    <!-- Comments Section -->
+                    <div class="mt-4">
+                        <form action="/posts/post._id/comments" method="POST" class="flex">
+                            <input
+                                type="text"
+                                name="comment"
+                                placeholder="Add a comment..."
+                                class="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400"
+                            />
+                            <button
+                                type="submit"
+                                class="ml-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                            >
+                                Comment
+                            </button>
+                        </form>
+                        <ul class="mt-2">
+                            
+                            <li class="text-gray-600 mb-2">comment </li>
+                        </ul>
+                    </div>
                 </div>
             </section>
         </main>
