@@ -1,0 +1,7 @@
+crud for user
+crud for posts
+
+advanced api's
+follow unfollow
+like dislike
+comment
