@@ -42,9 +42,9 @@
             <!-- Post Section -->
             <section class="mb-6">
                 <h2 class="text-xl font-semibold text-gray-900 mb-4">Create a Post</h2>
-                <form action="/posts" method="POST" class="bg-white shadow-md rounded-lg p-4">
+                <form action="/dashboard/post/create" method="POST" class="bg-white shadow-md rounded-lg p-4">
                     <textarea
-                        name="content"
+                        name="desc"
                         rows="4"
                         placeholder="What's on your mind?"
                         class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400"
@@ -60,17 +60,18 @@
 
             <!-- Posts Display -->
             <section>
-                <h2 class="text-xl font-semibold text-gray-900 mb-4">Posts</h2>
+                <% posts.forEach(post => { %>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-4">Posts</h2>
                 <div class="bg-white shadow-md rounded-lg p-4 mb-4">
-                    <p class="text-gray-900">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum deleniti quo labore voluptatum iste! Saepe, repellat tenetur. Deleniti, minus, </p>
+                    <p class="text-gray-900"><%= post.desc %></p>
                     <div class="mt-2 flex items-center justify-between">
                         <div class="text-gray-600">
-                            <span>0 Likes</span>
+                            <span><%= post.likes.length %> Likes</span>
                         </div>
-                        <a href="#" class="text-blue-500 hover:underline">Comments </a>
+                        <a href="#" class="text-blue-500 hover:underline"><%= post.comments %> </a>
                     </div>
                     <!-- Comments Section -->
-                    <div class="mt-4">
+                    <!-- <div class="mt-4">
                         <form action="/posts/post._id/comments" method="POST" class="flex">
                             <input
                                 type="text"
@@ -89,8 +90,9 @@
                             
                             <li class="text-gray-600 mb-2">comment </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
+                <% }) %>
             </section>
         </main>
     </div>

@@ -1,6 +1,8 @@
 const router = require("express").Router()
 const isAuth =  require("../middlewares/userMiddleware")
 const userModel = require("../models/userModel")
+const postModel = require("../models/postModel")
+
 
 router.get("/register", (req,res)=>{
     res.render("register")
@@ -11,7 +13,8 @@ router.get("/login", (req,res)=>{
 
 router.get("/dashboard",async (req,res)=>{
     let user = await userModel.findById(req.session.userId)
-    res.render("dashboard")
+    let posts = await postModel.find()
+    res.render("dashboard", {posts})
 })
 
 module.exports = router
