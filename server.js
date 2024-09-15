@@ -23,4 +23,6 @@ app.use("/", require("./routes/userRoutes"))
 
 app.use("/", require("./auth/userAuth"))
 
+app.use("/", require("./controllers/userControllers"))
+
 app.listen(3000, ()=> console.log("server running on port 3000"))

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md p-4">
+            <h2 class="text-xl font-bold mb-6">Dashboard</h2>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Profile</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Messages</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 p-6">
+            <header class="mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">Welcome, <%= user.username %></h1>
+                <p class="mt-1 text-gray-600">Here’s an overview of your dashboard.</p>
+            </header>
+            
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Overview</h3>
+                    <p class="mt-2 text-gray-600">A brief overview of your recent activities and stats.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Notifications</h3>
+                    <p class="mt-2 text-gray-600">Recent notifications and alerts relevant to your account.</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Quick Actions</h3>
+                    <p class="mt-2 text-gray-600">Quick links to commonly used actions and settings.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

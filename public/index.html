@@ -5,8 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Additional custom styles */
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+    </style>
 </head>
-<body>
-    <h1>Home page</h1>
+<body class="bg-gray-100 text-gray-800">
+
+    <section id="relume" class="px-[5%] py-16 md:py-24 lg:py-28 bg-white shadow-md rounded-lg">
+        <div class="container mx-auto">
+          <div class="grid grid-cols-1 gap-x-20 gap-y-12 md:gap-y-16 lg:grid-cols-2 lg:items-center">
+            <div class="order-2 lg:order-1">
+              <img
+                src="https://d22po4pjz3o32e.cloudfront.net/placeholder-image.svg"
+                class="w-full object-cover rounded-lg shadow-lg"
+                alt="Relume placeholder image"
+              />
+            </div>
+            <div class="order-1 lg:order-2">
+              <h1 class="mb-5 text-4xl font-extrabold md:mb-6 md:text-6xl lg:text-7xl text-gray-900 leading-tight">
+                Welcome to MySpace
+              </h1>
+              <p class="text-base md:text-lg text-gray-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros
+                elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
+                commodo diam libero vitae erat.
+              </p>
+              <div class="mt-6 flex flex-col gap-y-4 md:flex-row md:gap-x-4 md:mt-8">
+                <a href="/register"
+                  class="inline-flex items-center justify-center whitespace-nowrap ring-offset-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-sm hover:bg-gray-300"
+                  title="Button"
+                >
+                  Sign-up
+                </a>
+                <a href="/login"
+                  class="inline-flex items-center justify-center whitespace-nowrap ring-offset-white transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 bg-blue-500 text-white px-6 py-3 rounded-lg shadow-sm hover:bg-blue-600"
+                  title="Button"
+                >
+                  Sign-in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 </body>
 </html>
