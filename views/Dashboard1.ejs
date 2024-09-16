@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white shadow-md p-4">
+            <h2 class="text-xl font-bold mb-6">Dashboard</h2>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Home</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Profile</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Messages</a>
+                    </li>
+                    <li>
+                        <a href="/logout" class="block px-4 py-2 rounded-md text-gray-700 hover:bg-gray-200">Logout</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 p-6">
+            <header class="mb-6">
+                <h1 class="text-2xl font-bold text-gray-900">Welcome, user</h1>
+                <p class="mt-1 text-gray-600">Here’s an overview of your dashboard.</p>
+            </header>
+            
+            <!-- Post Section -->
+            <section class="mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Create a Post</h2>
+                <form action="/dashboard/post/create" method="POST" class="bg-white shadow-md rounded-lg p-4">
+                    <textarea
+                        name="desc"
+                        rows="4"
+                        placeholder="What's on your mind?"
+                        class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400"
+                    ></textarea>
+                    <button
+                        type="submit"
+                        class="mt-4 inline-flex items-center justify-center rounded-md bg-black px-4 py-2 text-white hover:bg-black/80"
+                    >
+                        Post
+                    </button>
+                </form>
+            </section>
+
+            <!-- Posts Display -->
+            <section>
+                <h2 class="text-xl font-semibold text-gray-900 mb-4">Posts</h2>
+                <% posts.forEach(post => { %>
+                <div class="bg-white shadow-md rounded-lg p-4 mb-4 relative">
+                    <form action="/dashboard/post/<%= post._id %>/comments/delete" method="POST" class="absolute top-2 right-2">
+                        <button type="submit" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                    <p class="text-gray-900"><%= post.desc %></p>
+                    <div class="mt-2 flex items-center justify-between">
+                        <div class="text-gray-600">
+                            <span><%= post.likes.length %> Likes</span>
+                        </div>
+                        <!-- <a href="#" class="text-blue-500 hover:underline"><%= post.comments %> </a> -->
+                    </div>
+                    <!-- Comments Section -->
+                    <div class="mt-4">
+                        <form action="/dashboard/post/<%= post._id %>/comments" method="POST" class="flex">
+                            <input
+                                type="text"
+                                name="text"
+                                placeholder="Add a comment..."
+                                class="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-gray-400"
+                            />
+                            <button
+                                type="submit"
+                                class="ml-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                            >
+                                Comment
+                            </button>
+                        </form>
+                        <ul class="mt-2">
+                            <% post.comments.forEach(comment => { %>
+                                <li class="text-gray-600 mb-2">
+                                    <%= comment.text %>
+                                    <span class="text-gray-400 text-sm"> - 
+                                        <%= new Date(comment.timestamp).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) %> 
+                                        <%= new Date(comment.timestamp).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) %>
+                                    </span>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <% }) %>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

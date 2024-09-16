@@ -14,7 +14,7 @@ router.get("/login", (req,res)=>{
 router.get("/dashboard",async (req,res)=>{
     let user = await userModel.findById(req.session.userId)
     let posts = await postModel.find()
-    res.render("dashboard", {posts})
+    res.render("dashboard")
 })
 
 module.exports = router
