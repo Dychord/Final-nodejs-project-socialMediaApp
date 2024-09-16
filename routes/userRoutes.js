@@ -18,14 +18,18 @@ router.get("/dashboard",async (req,res)=>{
 })
 
 router.get("/profile",async (req,res)=>{
-    let user = await userModel.findById(req.session.userId)
-    let posts = await postModel.find()
     res.render("profile", {currentRoute : 'profile'})
 })
 router.get("/settings",async (req,res)=>{
-    let user = await userModel.findById(req.session.userId)
-    let posts = await postModel.find()
     res.render("settings", {currentRoute: 'settings'})
 })
+router.get("/notifications",async (req,res)=>{
+    res.render("notifications", {currentRoute: 'notifications'})
+})
+router.get("/messages",async (req,res)=>{
+    res.render("messages")
+})
+
+
 
 module.exports = router

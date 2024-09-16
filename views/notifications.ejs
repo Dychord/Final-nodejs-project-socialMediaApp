@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .notification {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .notification:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 flex justify-between">
+    <!-- Sidebar -->
+        <nav >
+            <!-- Include Sidebar here -->
+            <%- include('./components/sidebar') %>
+        </nav>
+
+       <!-- Main Content -->
+       <div class="ml-[17%] p-8 w-[50%]">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Notifications</h1>
+        <div class="space-y-2">
+            <!-- Notification Item -->
+            <div class="notification bg-white p-3 rounded-lg shadow-md flex items-center space-x-3 cursor-pointer" onclick="showPopup('popup1')">
+                <div class="flex-shrink-0 w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center text-lg">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="flex-1 text-sm">
+                    <h3 class="text-gray-800 font-semibold">Notification Title</h3>
+                    <p class="text-gray-600">This is a brief description.</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+
+            <!-- Repeat Notification Item as needed -->
+            <div class="notification bg-white p-3 rounded-lg shadow-md flex items-center space-x-3 cursor-pointer" onclick="showPopup('popup2')">
+                <div class="flex-shrink-0 w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center text-lg">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="flex-1 text-sm">
+                    <h3 class="text-gray-800 font-semibold">Another Notification Title</h3>
+                    <p class="text-gray-600">Brief description of another notification.</p>
+                </div>
+                <div class="text-gray-400">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+
+            <!-- Add more notifications here -->
+
+        </div>
+    </div>
+
+    <%- include('./components/rightside') %>
+</body>
+
+</html>
