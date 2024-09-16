@@ -1,0 +1,159 @@
+<!-- Feed -->
+    <!-- Main content area -->
+    <div class="w-[50%] p-6 rounded-lg shadow-md overflow-y-scroll h-screen bg-white ">
+        <!-- Search and Create Post -->
+        <div class="flex items-center justify-between mb-6">
+            <input type="text" placeholder="Search..."
+                class="w-[50%] border-2 border-gray-300 p-2 rounded-md focus:outline-none focus:border-blue-500" />
+            <!-- Notification Button -->
+            <!-- <button id="notifyBtn"
+                class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-200 focus:outline-none">
+                Show Notification
+            </button> -->
+            <span><i id="notifyBtn" class="fa-solid fa-bell text-xl text-blue-800"></i></span>
+            
+            <button class="ml-4 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">                    
+                New Post
+            </button>
+        </div>
+
+        <!-- Notification Popup -->
+        <div id="notificationPopup"
+            class="popup fixed bottom-5 right-5 bg-white shadow-lg rounded-lg max-w-xs p-4 border-l-4 border-blue-500 z-[5] drop-shadow-2xl border-2">
+            <div class="flex items-start">
+                <!-- Notification Icon -->
+                <div class="flex-shrink-0">
+                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m0-4h.01M12 17h.01M3 7h18M3 11h18m-9 4h9"></path>
+                    </svg>
+                </div>
+                <!-- Notification Content -->
+                <div class="ml-3 ">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">New Notification</h3>
+                    <div class="mt-2 text-sm text-gray-500">
+                        <p>You have a new message in your inbox. Check it out!</p>
+                    </div>
+                    <!-- Close Button -->
+                    <div class="mt-4">
+                        <button id="closeBtn"
+                            class="text-sm font-semibold text-red-500 hover:underline">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Stories Section -->
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="text-xl font-semibold">Stories</h1>
+            <h3 class="text-blue-600 cursor-pointer hover:underline">Watch All</h3>
+        </div>
+
+
+        <!-- Stories with Horizontal Scroll -->
+        <div class="flex gap-7 mb-6 overflow-x-auto whitespace-nowrap custom-scrollbar ">
+            <!-- Story 1 -->
+            <div class="flex flex-col flex-none items-center">
+                <img src="https://via.placeholder.com/80" alt="Add Story"
+                    class="h-20 w-20 rounded-full bg-gray-300">
+                <h3 class="font-bold mt-2">Add Story</h3>
+            </div>
+            <!-- Story 2 -->
+            <div class="flex flex-col flex-none items-center">
+                <img src="https://via.placeholder.com/80" alt="Glason" class="h-20 w-20 rounded-full bg-gray-300">
+                <h3 class="font-bold mt-2">Glason</h3>
+            </div>
+            <!-- Story 3 -->
+            <div class="flex flex-col flex-none items-center">
+                <img src="https://via.placeholder.com/80" alt="Amber" class="h-20 w-20 rounded-full bg-gray-300">
+                <h3 class="font-bold mt-2">Amber</h3>
+            </div>
+            <!-- Story 4 -->
+            <div class="flex flex-col flex-none items-center">
+                <img src="https://via.placeholder.com/80" alt="Akima" class="h-20 w-20 rounded-full bg-gray-300">
+                <h3 class="font-bold mt-2">Akima</h3>
+            </div>
+            <!-- Story 4 -->
+            <div class="flex flex-col flex-none items-center">
+                <img src="https://via.placeholder.com/80" alt="Akima" class="h-20 w-20 rounded-full bg-gray-300">
+                <h3 class="font-bold mt-2">Akima</h3>
+            </div>
+
+
+            <!-- Add more stories here -->
+        </div>
+
+
+        <!-- Feed Buttons -->
+        <div class="flex items-center justify-between mb-6">
+            <h1 class="text-xl font-semibold">Feeds</h1>
+            <div class="flex gap-4">
+                <button class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Popular</button>
+                <button class="bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300">Latest</button>
+            </div>
+        </div>
+
+        <!-- Feed -->
+        <div class="flex flex-col gap-7">
+            <div class="bg-white rounded-lg drop-shadow-md p-4">
+                <!-- Post Section -->
+                <div class="mb-4">
+                    <!-- User Info -->
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                            <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                class="object-cover w-full h-full">
+                        </div>
+                        <div>
+                            <h2 class="text-md font-semibold">Name</h2>
+                            <h3 class="text-sm text-gray-500">username</h3>
+                        </div>
+                    </div>
+
+                    <!-- Post Image -->
+                    <div class="mb-4">
+                        <img src="https://plus.unsplash.com/premium_photo-1723826751660-717811d0fbc6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Post Image" class="w-full rounded-lg" />
+                    </div>
+
+                    <!-- Post Description -->
+                    <div class="mb-4">
+                        <p class="text-gray-800">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia obcaecati dolorem
+                            perspiciatis voluptates
+                            accusantium dicta? At ullam, fugiat expedita vero obcaecati itaque accusantium ab
+                            laudantium
+                            natus delectus
+                            hic quasi tempore.
+                            <a href="#" class="text-blue-600 hover:underline">read more...</a>
+                        </p>
+                    </div>
+
+                    <!-- Post Actions: Likes, Comments, Save -->
+                    <div class="flex items-center justify-between text-gray-600">
+                        <!-- Likes and Comments -->
+                        <div class="flex items-center gap-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-heart"></i>
+                                <span>10 Likes</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-comment"></i>
+                                <span>5 Comments</span>
+                            </div>
+                        </div>
+
+                        <!-- Save Post -->
+                        <div class="flex items-center gap-5 cursor-pointer">
+                            <i class="fas fa-bookmark"></i>
+                            <h1>Save post</h1>
+                            <i class="fa-solid fa-share"></i>
+                            <h1>Share post</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

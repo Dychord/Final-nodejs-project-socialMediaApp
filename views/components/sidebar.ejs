@@ -1,0 +1,130 @@
+<!-- Sidebar -->
+<% if (currentRoute !== 'settings') { %>
+    <!-- Sidebar for routes other than settings -->
+    <nav class="w-[17%] h-screen sticky top-0 bg-white drop-shadow-xl">
+<% } else { %>
+    <!-- Sidebar specifically for settings page -->
+    <nav class="absolute top-0 left-0 w-[17%] h-screen bg-white drop-shadow-xl">
+<% } %>
+
+                        <!-- profile -->
+                        <div class="w-full h-[25%] flex justify-end items-center flex-col gap-6">
+                            <div>
+                                <div class="w-20 h-20 bg-red-300 rounded-full"><img src="" alt=""></div>
+                                <h1 class="text-center text-lg font-semibold mt-3">Name</h1>
+                                <h3 class="text-center opacity-80">username</h3>
+                            </div>
+                            <div class="flex gap-10">
+                                <div class="flex flex-col items-center">
+                                    <h3 class="font-bold">20</h3>
+                                    <a href="" class="text-gray-600">Posts</a>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <h3 class="font-bold">1M</h3>
+                                    <a href="" class="text-gray-600">Followers</a>
+                                </div>
+                                <div class="flex flex-col items-center">
+                                    <h3 class="font-bold">200</h3>
+                                    <a href="" class="text-gray-600">Following</a>
+                                </div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <hr />
+                        <!-- menu -->
+                        <div class="w-full h-[26%]">
+                            <ul class="flex flex-col gap-4 font-semibold ml-10 mt-8">
+                                <li class="mt-3">
+                                    <a href="/dashboard"
+                                        class="flex items-center gap-3 text-gray-700 hover:text-blue-500">
+                                        <i class="fas fa-rss"></i> <!-- Feeds Icon -->
+                                        Feeds
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center gap-3 text-gray-700 hover:text-blue-500">
+                                        <i class="fas fa-bell"></i> <!-- Notifications Icon -->
+                                        Notifications
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center gap-3 text-gray-700 hover:text-blue-500">
+                                        <i class="fas fa-envelope"></i> <!-- Messages Icon -->
+                                        Messages
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center gap-3 text-gray-700 hover:text-blue-500">
+                                        <i class="fas fa-heart"></i> <!-- My Favourites Icon -->
+                                        My Favourites
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/profile"
+                                        class="flex items-center gap-3 text-gray-700 hover:text-blue-500">
+                                        <i class="fas fa-user"></i> <!-- Profile Icon -->
+                                        Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/settings" class="flex items-center gap-3 text-gray-700 hover:text-blue-500">
+                                        <i class="fas fa-cog"></i> <!-- Setting Icon -->
+                                        Setting
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <br><br>
+                        <hr />
+                        <!-- friends -->
+                        <div class="w-full rounded-lg p-4 py-2 mt-6">
+                            <!-- Title -->
+                            <h1 class="text-lg font-semibold mb-4">Friends</h1>
+
+                            <!-- Contact 1 -->
+                            <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md">
+                                <!-- Profile Image -->
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                                        <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                            class="object-cover w-full h-full">
+                                    </div>
+                                    <!-- Name and Username -->
+                                    <div>
+                                        <h2 class="text-md font-semibold">Name</h2>
+                                        <h3 class="text-sm text-gray-500">username</h3>
+                                    </div>
+                                </div>
+                                <!-- Chat Icon -->
+                                <div class="text-blue-500 cursor-pointer">
+                                    <i class="fa-regular fa-comment"></i> <!-- Chat Icon -->
+                                </div>
+                            </div>
+
+                            <!-- Contact 2 -->
+                            <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mt-4">
+                                <!-- Profile Image -->
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                                        <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                            class="object-cover w-full h-full">
+                                    </div>
+                                    <!-- Name and Username -->
+                                    <div>
+                                        <h2 class="text-md font-semibold">Name</h2>
+                                        <h3 class="text-sm text-gray-500">username</h3>
+                                    </div>
+                                </div>
+                                <!-- Chat Icon -->
+                                <div class="text-blue-500 cursor-pointer">
+                                    <i class="fa-regular fa-comment"></i> <!-- Chat Icon -->
+                                </div>
+                            </div>
+
+                            <!-- View All Button -->
+                            <div class="mt-6 text-center">
+                                <a href="#" class="text-blue-600 hover:underline font-semibold">View All</a>
+                            </div>
+                        </div>
+
+                </nav>
