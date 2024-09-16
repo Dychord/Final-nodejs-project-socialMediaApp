@@ -12,33 +12,87 @@
 
 <body class="bg-gray-50 text-gray-800">
     <!-- Custom Scrollbar Styles -->
-<style>
-    /* Custom scrollbar styles */
-    .custom-scrollbar::-webkit-scrollbar {
-        height: 6px; /* Custom height for the horizontal scrollbar */
-    }
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
 
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0.3); /* Darker and semi-transparent scrollbar */
-        border-radius: 10px; /* Rounded scrollbar edges */
-    }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background-color: rgba(0, 0, 0, 0.5); /* Slightly darker on hover */
-    }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
 
-    .custom-scrollbar::-webkit-scrollbar-track {
-        background-color: transparent; /* Hide the track background */
-    }
-    .custom-scrollbar {
-        scrollbar-width: none; /* For Firefox */
-        -ms-overflow-style: none; /* For Internet Explorer and Edge */
-    }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
 
-    .custom-scrollbar::-webkit-scrollbar {
-        display: none; /* For Chrome, Safari, and Opera */
-    }
-</style>
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(14px);
+        }
+
+        /* Custom scrollbar styles */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            /* Custom height for the horizontal scrollbar */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.3);
+            /* Darker and semi-transparent scrollbar */
+            border-radius: 10px;
+            /* Rounded scrollbar edges */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Slightly darker on hover */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background-color: transparent;
+            /* Hide the track background */
+        }
+
+        .custom-scrollbar {
+            scrollbar-width: none;
+            /* For Firefox */
+            -ms-overflow-style: none;
+            /* For Internet Explorer and Edge */
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            display: none;
+            /* For Chrome, Safari, and Opera */
+        }
+    </style>
 
 
     <main class="flex justify-between relative">
@@ -211,8 +265,8 @@
                     <img src="https://via.placeholder.com/80" alt="Akima" class="h-20 w-20 rounded-full bg-gray-300">
                     <h3 class="font-bold mt-2">Akima</h3>
                 </div>
-               
-               
+
+
                 <!-- Add more stories here -->
             </div>
 
@@ -291,12 +345,175 @@
 
 
         <!-- right bar -->
-        <div class="w-[20%] h-screen bg-zinc-100 sticky top-0">
-            <h1 class="text-lg font-semibold text-center mt-10">About Us</h1>
-            <p class="text-sm text-center mt-5 px-6 leading-relaxed">We are a social media platform focused on creating
-                meaningful connections and providing an enjoyable online experience for everyone.</p>
-            <button class="block bg-blue-600 text-white py-2 px-6 rounded-md mt-8 mx-auto hover:bg-blue-700">Contact
-                Us</button>
+        <div class="w-[20%] h-screen bg-zinc-100 ">
+            <!-- Requests -->
+            <div>
+                <div class="bg-zinc-200 p-4 rounded-lg shadow-md w-[98%] mx-auto">
+                    <h1 class="text-xl font-bold mb-4 flex items-center justify-between">
+                        Requests <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-sm">2</span>
+                    </h1>
+                    <!-- user request card -->
+                    <div class="flex items-start space-x-4 mt-3 bg-white rounded-lg p-1.5">
+                        <img class="w-16 h-16 object-cover rounded-full"
+                            src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Profile Picture">
+                        <div class="flex-1">
+                            <h1 class="text-md font-semibold">
+                                <strong>User</strong> wants to add you as a friend
+                            </h1>
+                            <div class="mt-2">
+                                <!-- <a href="" class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition duration-200 font-semibold">Accept</a> -->
+                                <a href="" class="text-blue-600 font-semibold underline px-3 py-1 ml-2">Accept</a>
+                                <a href="" class="px-3 py-1 ml-2 text-red-600 font-semibold ">Decline</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- duplicate -->
+                    <div class="flex items-start space-x-4 mt-3 bg-white rounded-lg p-1.5">
+                        <img class="w-16 h-16 object-cover rounded-full"
+                            src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Profile Picture">
+                        <div class="flex-1">
+                            <h1 class="text-md font-semibold">
+                                <strong>User</strong> wants to add you as a friend
+                            </h1>
+                            <div class="mt-2">
+                                <!-- <a href="" class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition duration-200 font-semibold">Accept</a> -->
+                                <a href="" class="text-blue-600 font-semibold underline px-3 py-1 ml-2">Accept</a>
+                                <a href="" class="px-3 py-1 ml-2 text-red-600 font-semibold ">Decline</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- duplicate ends here -->
+                </div>
+            </div>
+            <hr>
+
+            <!-- Suggestions for you -->
+
+            <div class="w-full rounded-lg px-4 py-2 mt-6 bg-zinc-200">
+                <!-- Title -->
+                <h1 class="text-lg font-bold mb-4 ">Suggestions for you</h1>
+
+                <!-- Contact 1 -->
+                <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md">
+                    <!-- Profile Image -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                            <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                class="object-cover w-full h-full">
+                        </div>
+                        <!-- Name and Username -->
+                        <div>
+                            <h2 class="text-md font-semibold">Name</h2>
+                            <h3 class="text-sm text-gray-500">username</h3>
+                        </div>
+                    </div>
+                    <!-- Friend Icon -->
+                    <div class="text-blue-500 cursor-pointer">
+                        <i class="fa-solid fa-user-group"></i> <!-- friend Icon -->
+                    </div>
+                </div>
+
+                <!-- Contact 2 -->
+                <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mt-4">
+                    <!-- Profile Image -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                            <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                class="object-cover w-full h-full">
+                        </div>
+                        <!-- Name and Username -->
+                        <div>
+                            <h2 class="text-md font-semibold">Name</h2>
+                            <h3 class="text-sm text-gray-500">username</h3>
+                        </div>
+                    </div>
+                    <!-- Friend Icon -->
+                    <div class="text-blue-500 cursor-pointer">
+                        <i class="fa-solid fa-user-group"></i> <!-- friend Icon -->
+                    </div>
+                </div>
+                <!-- Contact 2 -->
+                <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mt-4">
+                    <!-- Profile Image -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                            <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                class="object-cover w-full h-full">
+                        </div>
+                        <!-- Name and Username -->
+                        <div>
+                            <h2 class="text-md font-semibold">Name</h2>
+                            <h3 class="text-sm text-gray-500">username</h3>
+                        </div>
+                    </div>
+                    <!-- Friend Icon -->
+                    <div class="text-blue-500 cursor-pointer">
+                        <i class="fa-solid fa-user-group"></i> <!-- friend Icon -->
+                    </div>
+                </div>
+
+                <!-- View All Button -->
+                <div class="mt-6 text-center">
+                    <a href="#" class="text-blue-600 hover:underline font-semibold">View All</a>
+                </div>
+            </div>
+
+
+            <!-- Additional Features -->
+           
+
+            <div class="w-full rounded-lg px-4 py-2 mt-6 bg-zinc-200">
+                <h1 class="text-lg font-bold mb-4 ">Additional Features</h1>
+                <!-- Anonymous Mode Toggle -->
+                <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mb-4">
+                    <div class="flex-1">
+                        <h2 class="text-md font-semibold">Anonymous Mode</h2>
+                        <p class="text-sm text-gray-500">Toggle to switch between anonymous and regular user mode.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="anonymous-mode-toggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <!-- Privacy Settings -->
+                <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mb-4">
+                    <div class="flex-1">
+                        <h2 class="text-md font-semibold">Privacy Settings</h2>
+                        <p class="text-sm text-gray-500">Control who can see your information and activities.</p>
+                    </div>
+                    <a href="#" class="text-blue-600 hover:underline">Manage</a>
+                </div>
+
+                <!-- Follow or Invite Friends -->
+                <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mb-4">
+                    <div class="flex-1">
+                        <h2 class="text-md font-semibold">Follow/Invite Friends</h2>
+                        <p class="text-sm text-gray-500">Find friends and send invites to join the platform.</p>
+                    </div>
+                    <a href="#" class="text-blue-600 hover:underline">Explore</a>
+                </div>
+
+                <!-- Become a Verified User -->
+                <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mb-4">
+                    <div class="flex-1">
+                        <h2 class="text-md font-semibold">Become a Verified User</h2>
+                        <p class="text-sm text-gray-500">Get verified to gain additional features and trust.</p>
+                    </div>
+                    <a href="#" class="text-blue-600 hover:underline">Verify Now</a>
+                </div>
+
+                <!-- Logout Button -->
+                <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md">
+                    <div class="flex-1">
+                        <h2 class="text-md font-semibold">Logout</h2>
+                        <p class="text-sm text-gray-500">Sign out of your account.</p>
+                    </div>
+                    <a href="/logout" class="text-red-600 hover:underline">Logout</a>
+                </div>
+            </div>
         </div>
 
         </div>
@@ -307,7 +524,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const scrollArea = document.querySelector('.custom-scrollbar');
-        
+
         let timeout;
 
         // Show scrollbar on scroll
