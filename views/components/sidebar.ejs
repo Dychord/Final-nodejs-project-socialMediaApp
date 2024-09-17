@@ -11,20 +11,20 @@
                         <div class="w-full h-[25%] flex justify-end items-center flex-col gap-6">
                             <div>
                                 <div class="w-20 h-20 bg-red-300 rounded-full"><img src="" alt=""></div>
-                                <h1 class="text-center text-lg font-semibold mt-3">Name</h1>
-                                <h3 class="text-center opacity-80">username</h3>
+                                <h1 class="text-center text-lg font-semibold mt-3"><%= user.username %></h1>
+                                <h3 class="text-center opacity-80"><%= user.email %></h3>
                             </div>
                             <div class="flex gap-10">
                                 <div class="flex flex-col items-center">
-                                    <h3 class="font-bold">20</h3>
+                                    <h3 class="font-bold"><%= user.myPosts.length %></h3>
                                     <a href="" class="text-gray-600">Posts</a>
                                 </div>
                                 <div class="flex flex-col items-center">
-                                    <h3 class="font-bold">1M</h3>
+                                    <h3 class="font-bold"><%= user.followers.length %></h3>
                                     <a href="" class="text-gray-600">Followers</a>
                                 </div>
                                 <div class="flex flex-col items-center">
-                                    <h3 class="font-bold">200</h3>
+                                    <h3 class="font-bold"><%= user.following.length %></h3>
                                     <a href="" class="text-gray-600">Following</a>
                                 </div>
                             </div>
@@ -82,45 +82,32 @@
                             <h1 class="text-lg font-semibold mb-4">Friends</h1>
 
                             <!-- Contact 1 -->
-                            <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md">
-                                <!-- Profile Image -->
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
-                                        <img src="https://via.placeholder.com/150" alt="Profile Image"
-                                            class="object-cover w-full h-full">
+                            <% if (user.followers.length > 0) { %>
+                                <% user.followers.forEach(friend => { %>
+                                    <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md">
+                                        <!-- Profile Image -->
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                                                <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                                    class="object-cover w-full h-full">
+                                            </div>
+                                            <!-- Name and Username -->
+                                            <div>
+                                                <h2 class="text-md font-semibold"><%= friend.username %></h2>
+                                                <h3 class="text-sm text-gray-500"><%= friend.email %></h3>
+                                            </div>
+                                        </div>
+                                        <!-- Chat Icon -->
+                                        <div class="text-blue-500 cursor-pointer">
+                                            <i class="fa-regular fa-comment"></i> <!-- Chat Icon -->
+                                        </div>
                                     </div>
-                                    <!-- Name and Username -->
-                                    <div>
-                                        <h2 class="text-md font-semibold">Name</h2>
-                                        <h3 class="text-sm text-gray-500">username</h3>
-                                    </div>
-                                </div>
-                                <!-- Chat Icon -->
-                                <div class="text-blue-500 cursor-pointer">
-                                    <i class="fa-regular fa-comment"></i> <!-- Chat Icon -->
-                                </div>
-                            </div>
+                                <% }) %>
+                            <% } else {%>
+                                <h1>You have no friends yet</h1>
+                            <% }  %>
 
-                            <!-- Contact 2 -->
-                            <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mt-4">
-                                <!-- Profile Image -->
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
-                                        <img src="https://via.placeholder.com/150" alt="Profile Image"
-                                            class="object-cover w-full h-full">
-                                    </div>
-                                    <!-- Name and Username -->
-                                    <div>
-                                        <h2 class="text-md font-semibold">Name</h2>
-                                        <h3 class="text-sm text-gray-500">username</h3>
-                                    </div>
-                                </div>
-                                <!-- Chat Icon -->
-                                <div class="text-blue-500 cursor-pointer">
-                                    <i class="fa-regular fa-comment"></i> <!-- Chat Icon -->
-                                </div>
-                            </div>
-
+                                
                             <!-- View All Button -->
                             <div class="mt-6 text-center">
                                 <a href="#" class="text-blue-600 hover:underline font-semibold">View All</a>

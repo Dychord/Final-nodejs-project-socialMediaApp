@@ -12,9 +12,9 @@
 <body class="bg-gray-100">
     
     <main class="flex justify-between relative">
-        <%- include('./components/sidebar') %>
-        <%- include('./components/feed') %>
-        <%- include('./components/rightside') %>
+        <%- include('./components/sidebar', { user, allUsers}) %>
+        <%- include('./components/feed', { user, posts}) %>
+        <%- include('./components/rightside', { user, allUsers}) %>
     </main>
 
 </body>

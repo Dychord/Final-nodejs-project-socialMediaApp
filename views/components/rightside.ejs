@@ -4,115 +4,91 @@
     <div>
         <div class=" p-4 rounded-lg shadow-md w-[98%] mx-auto">
             <h1 class="text-xl font-bold mb-4 flex items-center justify-between">
-                Requests <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-sm">2</span>
+                Requests <span class="bg-blue-500 text-white px-2 py-1 rounded-full text-sm">
+                    <%= user.requests.length %>
+                </span>
             </h1>
             <!-- user request card -->
-            <div class="flex items-start space-x-4 mt-3 bg-white rounded-lg p-1.5">
-                <img class="w-16 h-16 object-cover rounded-full"
-                    src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Profile Picture">
-                <div class="flex-1">
-                    <h1 class="text-md font-semibold">
-                        <strong>User</strong> wants to add you as a friend
-                    </h1>
-                    <div class="mt-2">
-                        <!-- <a href="" class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition duration-200 font-semibold">Accept</a> -->
-                        <a href="" class="text-blue-600 font-semibold underline px-3 py-1 ml-2">Accept</a>
-                        <a href="" class="px-3 py-1 ml-2 text-red-600 font-semibold ">Decline</a>
+            <% if (user.requests.length> 0) { %>
+                <div class="flex items-start space-x-4 mt-3 bg-white rounded-lg p-1.5">
+                    <img class="w-16 h-16 object-cover rounded-full"
+                        src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Profile Picture">
+                    <div class="flex-1">
+                        <h1 class="text-md font-semibold">
+                            <strong>User</strong> wants to add you as a friend
+                        </h1>
+                        <div class="mt-2">
+                            <!-- <a href="" class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition duration-200 font-semibold">Accept</a> -->
+                            <a href="" class="text-blue-600 font-semibold underline px-3 py-1 ml-2">Accept</a>
+                            <a href="" class="px-3 py-1 ml-2 text-red-600 font-semibold ">Decline</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- duplicate -->
-            <div class="flex items-start space-x-4 mt-3 bg-white rounded-lg p-1.5">
-                <img class="w-16 h-16 object-cover rounded-full"
-                    src="https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    alt="Profile Picture">
-                <div class="flex-1">
-                    <h1 class="text-md font-semibold">
-                        <strong>User</strong> wants to add you as a friend
-                    </h1>
-                    <div class="mt-2">
-                        <!-- <a href="" class="bg-green-500 text-white px-3 py-1 rounded-md hover:bg-green-600 transition duration-200 font-semibold">Accept</a> -->
-                        <a href="" class="text-blue-600 font-semibold underline px-3 py-1 ml-2">Accept</a>
-                        <a href="" class="px-3 py-1 ml-2 text-red-600 font-semibold ">Decline</a>
-                    </div>
-                </div>
-            </div>
-            <!-- duplicate ends here -->
+                <% } else { %>
+                    <h1>No requests yet</h1>
+                    <% } %>
+
         </div>
     </div>
     <hr>
 
     <!-- Suggestions for you -->
 
-    <div class="w-full rounded-lg px-4 py-2 mt-6 ">
+    <div class="w-full rounded-lg px-4 py-2 mt-6">
         <!-- Title -->
-        <h1 class="text-lg font-bold mb-4 ">Suggestions for you</h1>
+        <h1 class="text-lg font-bold mb-4">Suggestions for you</h1>
 
-        <!-- Contact 1 -->
-        <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md">
-            <!-- Profile Image -->
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
-                    <img src="https://via.placeholder.com/150" alt="Profile Image"
-                        class="object-cover w-full h-full">
-                </div>
-                <!-- Name and Username -->
-                <div>
-                    <h2 class="text-md font-semibold">Name</h2>
-                    <h3 class="text-sm text-gray-500">username</h3>
-                </div>
-            </div>
-            <!-- Friend Icon -->
-            <div class="text-blue-500 cursor-pointer">
-                <i class="fa-solid fa-user-group"></i> <!-- friend Icon -->
-            </div>
-        </div>
+        <% // Create an array of user IDs that the current user is following const
+            followingUserIds=user.following.map(id=> id.toString());
 
-        <!-- Contact 2 -->
-        <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mt-4">
-            <!-- Profile Image -->
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
-                    <img src="https://via.placeholder.com/150" alt="Profile Image"
-                        class="object-cover w-full h-full">
-                </div>
-                <!-- Name and Username -->
-                <div>
-                    <h2 class="text-md font-semibold">Name</h2>
-                    <h3 class="text-sm text-gray-500">username</h3>
-                </div>
-            </div>
-            <!-- Friend Icon -->
-            <div class="text-blue-500 cursor-pointer">
-                <i class="fa-solid fa-user-group"></i> <!-- friend Icon -->
-            </div>
-        </div>
-        <!-- Contact 2 -->
-        <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mt-4">
-            <!-- Profile Image -->
-            <div class="flex items-center gap-4">
-                <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
-                    <img src="https://via.placeholder.com/150" alt="Profile Image"
-                        class="object-cover w-full h-full">
-                </div>
-                <!-- Name and Username -->
-                <div>
-                    <h2 class="text-md font-semibold">Name</h2>
-                    <h3 class="text-sm text-gray-500">username</h3>
-                </div>
-            </div>
-            <!-- Friend Icon -->
-            <div class="text-blue-500 cursor-pointer">
-                <i class="fa-solid fa-user-group"></i> <!-- friend Icon -->
-            </div>
-        </div>
+            // Filter suggested users to exclude the current user and those the current user is already following
+            const suggestedUsers = allUsers.filter(suggestedUser =>
+            suggestedUser._id.toString() !== user._id.toString() &&
+            !followingUserIds.includes(suggestedUser._id.toString())
+            );
+            %>
 
-        <!-- View All Button -->
-        <div class="mt-6 text-center">
-            <a href="#" class="text-blue-600 hover:underline font-semibold">View All</a>
-        </div>
+            <% if (suggestedUsers.length> 0) { %>
+                <% suggestedUsers.forEach(suggestedUser=> { %>
+                    <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md mb-2">
+                        <!-- Profile Image -->
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                                <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                    class="object-cover w-full h-full">
+                            </div>
+                            <!-- Name and Username -->
+                            <div>
+                                <h2 class="text-md font-semibold">
+                                    <%= suggestedUser.username %>
+                                </h2>
+                                <h3 class="text-sm text-gray-500">
+                                    <%= suggestedUser.email %>
+                                </h3>
+                            </div>
+                        </div>
+                        <!-- Friend Icon -->
+                        <form action="/follow/<%= suggestedUser._id %>" method="POST" class="text-blue-500">
+                            <button type="submit" class="bg-transparent border-none cursor-pointer">
+                                <i class="fa-solid fa-user-group"></i> <!-- Friend Icon -->
+                            </button>
+                        </form>
+                    </div>
+                   
+                    <% }) %>
+                        <% } else { %>
+                            <p class="text-gray-500">No suggestions available</p>
+                            <% } %>
+ <!-- View All Button -->
+                    <div class="mt-6 text-center">
+                        <a href="#" class="text-blue-600 hover:underline font-semibold">View more...</a>
+                    </div>
+                                
     </div>
+
+
+
 
 
     <!-- Additional Features -->

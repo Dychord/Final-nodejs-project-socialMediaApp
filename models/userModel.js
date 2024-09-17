@@ -22,6 +22,14 @@ const userSchema = new mongoose.Schema({
     following: {
         type: Array,
         default: []
+    },
+    myPosts:{
+        type: Array,
+        default:[]
+    },
+    requests:{
+        type: Array,
+        default:[]
     }
 })
 

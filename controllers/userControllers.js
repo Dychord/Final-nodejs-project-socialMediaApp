@@ -12,7 +12,7 @@ router.post("/follow/:id", async (req,res)=>{
         else{
             await currentUser.updateOne({$push: {following: anotherUser._id}})
             await anotherUser.updateOne({$push: {followers: currentUser._id}})
-            return res.send(`You follow ${anotherUser.username} now`)
+            return res.redirect("/dashboard")
         }
     }
 
