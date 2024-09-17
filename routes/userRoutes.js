@@ -12,7 +12,6 @@ router.get("/login", (req,res)=>{
 })
 
 
-
 router.get("/dashboard", async (req, res) => {
     try {
         if (!req.session.userId) {
@@ -20,13 +19,17 @@ router.get("/dashboard", async (req, res) => {
             return res.redirect('/login')
         }
         
-        const user = await userModel.findById(req.session.userId).exec();
+        // Populate followers when fetching user
+        const user = await userModel.findById(req.session.userId)
+            .populate('followers', 'username email')
+            // .populate('following', 'username email') // Populate followers with username and email fields
+            .exec();
+
         if (!user) {
             return res.status(404).send("User not found");
         }
-
         // Paginate or limit results if needed
-        const posts = await postModel.find().populate('userId', 'username , email').sort({ createdAt: -1 }).exec();
+        const posts = await postModel.find().populate('userId', 'username email').sort({ createdAt: -1 }).exec();
         const allUsers = await userModel.find().exec();
         
         res.render("dashboard", { currentRoute: 'dashboard', user, posts, allUsers });

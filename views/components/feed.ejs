@@ -97,11 +97,10 @@
             </div>
         </div>
 
-        <!-- Feed -->
         <div class="flex flex-col gap-7">
             <% if (posts.length > 0) { %>
                 <% posts.forEach(post => { %>
-                    <% if (user.myPosts.includes(post._id.toString()) || user.following.some(u => u._id.toString() === post.userId.toString())) { %>
+                    <% if (user.myPosts.includes(post._id.toString()) || user.following.some(follow => follow._id.equals(post.userId._id))) { %>
                         <div class="bg-white rounded-lg drop-shadow-md p-4 mb-4">
                             <!-- Post Section -->
                             <div class="mb-4">
@@ -117,10 +116,7 @@
                                 </div>
                                 <!-- Post Description -->
                                 <div class="mb-4">
-                                    <p class="text-gray-800">
-                                        <%= post.desc %>
-                                        <!-- <a href="#" class="text-blue-600 hover:underline">read more...</a> -->
-                                    </p>
+                                    <p class="text-gray-800"><%= post.desc %></p>
                                 </div>
                                 <!-- Post Image -->
                                 <% if (post.img && post.img.data) { %>
@@ -128,24 +124,18 @@
                                         <img src="/dashboard/post/images/<%= post._id %>" alt="Post Image" class="w-full rounded-lg" />
                                     </div>
                                 <% } %>
-            
-                                
-            
                                 <!-- Post Actions: Likes, Comments, Save -->
                                 <div class="flex items-center justify-between text-gray-600">
-                                    <!-- Likes and Comments -->
                                     <div class="flex items-center gap-6">
                                         <div class="flex items-center gap-2">
                                             <i class="fas fa-heart"></i>
-                                            <span>10 Likes</span>
+                                            <span><%= post.likes.length %> Likes</span>
                                         </div>
                                         <div class="flex items-center gap-2">
                                             <i class="fas fa-comment"></i>
-                                            <span>5 Comments</span>
+                                            <span><%= post.comments.length %> Comments</span>
                                         </div>
                                     </div>
-            
-                                    <!-- Save Post -->
                                     <div class="flex items-center gap-5 cursor-pointer">
                                         <i class="fas fa-bookmark"></i>
                                         <h1>Save post</h1>
@@ -157,10 +147,23 @@
                         </div>
                     <% } %>
                 <% }) %>
+                <!-- Not working -->
             <% } else { %>
                 <div class="bg-white rounded-lg drop-shadow-md p-4">
-                    <p class="text-gray-800">You need to create a post first or follow someone to see their posts here.</p>
+                    <p class="text-gray-800">
+                        <% if (user.myPosts.length === 0 && user.following.length === 0) { %>
+                            You have no posts and are not following anyone. Create a post or follow someone to see their content here.
+                        <% } else if (user.myPosts.length === 0) { %>
+                            You have no posts yet. Create a post or follow someone to see content.
+                        <% } else if (user.following.length === 0) { %>
+                            You are not following anyone. Follow someone to see their posts.
+                        <% } %>
+                    </p>
                 </div>
             <% } %>
         </div>
+        
+        
+        
+        
     </div>

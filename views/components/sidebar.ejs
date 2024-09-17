@@ -80,16 +80,22 @@
                         <div class="w-full rounded-lg p-4 py-2 mt-6">
                             <!-- Title -->
                             <h1 class="text-lg font-semibold mb-4">Friends</h1>
-
-                            <!-- Contact 1 -->
-                            <% if (user.followers.length > 0) { %>
-                                <% user.followers.forEach(friend => { %>
+                        
+                            <!-- Contact List -->
+                            <% 
+                                // Find mutual friends
+                                const mutualFriends = user.followers.filter(friend =>
+                                    user.following.some(following => following._id.equals(friend._id))
+                                );
+                            %>
+                        
+                            <% if (mutualFriends.length > 0) { %>
+                                <% mutualFriends.forEach(friend => { %>
                                     <div class="flex items-center justify-between bg-white p-3 rounded-md shadow-md">
                                         <!-- Profile Image -->
                                         <div class="flex items-center gap-4">
                                             <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
-                                                <img src="https://via.placeholder.com/150" alt="Profile Image"
-                                                    class="object-cover w-full h-full">
+                                                <img src="https://via.placeholder.com/150" alt="Profile Image" class="object-cover w-full h-full">
                                             </div>
                                             <!-- Name and Username -->
                                             <div>
@@ -103,15 +109,10 @@
                                         </div>
                                     </div>
                                 <% }) %>
-                            <% } else {%>
+                            <% } else { %>
                                 <h1>You have no friends yet</h1>
-                            <% }  %>
-
-                                
-                            <!-- View All Button -->
-                            <div class="mt-6 text-center">
-                                <a href="#" class="text-blue-600 hover:underline font-semibold">View All</a>
-                            </div>
+                            <% } %>
                         </div>
+                        
 
                 </nav>
