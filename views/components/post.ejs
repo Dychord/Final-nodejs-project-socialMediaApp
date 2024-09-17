@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter-Like Post Popup with Edit/Delete</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Create Post Button -->
+    <div class="flex justify-center mt-10">
+        <button id="createPostBtn" class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-700">
+            What's happening?
+        </button>
+    </div>
+
+    <!-- Post Popup Modal -->
+    <div id="postModal" class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+        <div class="bg-white rounded-lg w-1/2 p-6">
+            <!-- Navbar Section -->
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center space-x-2">
+                    <img src="https://via.placeholder.com/50" alt="User Image" class="rounded-full w-10 h-10">
+                    <div>
+                        <h3 class="text-md font-semibold">John Doe</h3>
+                        <span class="text-sm text-gray-500" id="postDate"></span>
+                    </div>
+                </div>
+                <button id="closeBtn" class="text-gray-500 hover:text-gray-700">&times;</button>
+            </div>
+
+            <!-- Form Section -->
+            <form id="postForm" class="space-y-4">
+                <div>
+                    <textarea id="postContent" placeholder="What's happening?" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Add Image</label>
+                    <!-- Updated the styling to ensure only the button is clickable -->
+                    <input type="file" id="postImage" class="block w-full text-sm text-gray-500">
+                </div>
+                <div class="flex justify-end space-x-2">
+                    <button type="button" id="cancelBtn" class="bg-gray-500 text-white px-4 py-2 rounded-full hover:bg-gray-700">Cancel</button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit/Delete Menu Popup -->
+    <div id="menuPopup" class="hidden absolute bg-white shadow-lg rounded-lg w-32 p-2">
+        <button id="editPostBtn" class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Edit</button>
+        <button id="deletePostBtn" class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Delete</button>
+    </div>
+
+    <!-- Feed Section -->
+    <div class="max-w-xl mx-auto mt-8 space-y-4" id="feed"></div>
+
+    <script>
+        const createPostBtn = document.getElementById('createPostBtn');
+        const postModal = document.getElementById('postModal');
+        const closeBtn = document.getElementById('closeBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const postForm = document.getElementById('postForm');
+        const postDate = document.getElementById('postDate');
+        const feed = document.getElementById('feed');
+        const menuPopup = document.getElementById('menuPopup');
+        let currentEditPost = null;
+
+        // Get current date and time
+        const currentDate = new Date();
+        postDate.innerText = currentDate.toLocaleString();
+
+        // Show modal when "What's happening?" button is clicked
+        createPostBtn.addEventListener('click', () => {
+            postModal.classList.remove('hidden');
+        });
+
+        // Hide modal when "Close" or "Cancel" button is clicked
+        closeBtn.addEventListener('click', () => postModal.classList.add('hidden'));
+        cancelBtn.addEventListener('click', () => postModal.classList.add('hidden'));
+
+        // Handle form submission
+        postForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const postData = {
+                content: document.getElementById('postContent').value,
+                date: currentDate,
+                username: "John Doe", // You can dynamically set this based on logged-in user
+                userImage: "https://via.placeholder.com/50",
+                id: currentEditPost ? currentEditPost.id : new Date().getTime(), // If editing, keep the same ID
+            };
+
+            // Simulating image upload
+            const imageFile = document.getElementById('postImage').files[0];
+            if (imageFile) {
+                postData.image = URL.createObjectURL(imageFile); // Show uploaded image in feed
+            }
+
+            if (currentEditPost) {
+                // Update the post
+                updatePostInFeed(postData);
+                currentEditPost = null;
+            } else {
+                // Simulate posting to the server
+                await new Promise((resolve) => setTimeout(resolve, 1000));
+                // Add the post to the feed dynamically
+                addPostToFeed(postData);
+            }
+
+            // Hide the modal and reset form
+            postModal.classList.add('hidden');
+            postForm.reset();
+        });
+
+        // Function to add post to the feed
+        function addPostToFeed(post) {
+            const postElement = document.createElement('div');
+            postElement.classList.add('bg-white', 'shadow', 'p-4', 'rounded-lg', 'space-y-2');
+            postElement.dataset.postId = post.id;
+
+            postElement.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <img src="${post.userImage}" alt="User Image" class="rounded-full w-10 h-10">
+                        <div>
+                            <h3 class="text-md font-semibold">${post.username}</h3>
+                            <span class="text-sm text-gray-500">${new Date(post.date).toLocaleString()}</span>
+                        </div>
+                    </div>
+                    <!-- Menu Button -->
+                    <div class="relative">
+                        <button class="menuBtn text-gray-500 hover:text-gray-700">&#x22EE;</button>
+                    </div>
+                </div>
+                <p>${post.content}</p>
+                ${post.image ? `<img src="${post.image}" alt="Post Image" class="w-full rounded-lg">` : ''}
+                <!-- Post Actions -->
+                <div class="flex justify-between items-center">
+                    <div class="flex space-x-4 text-gray-500">
+                        <button class="likeBtn">Like</button>
+                        <button class="commentBtn">Comment</button>
+                    </div>
+                    <div class="flex space-x-4 text-gray-500">
+                        <button class="shareBtn">Share</button>
+                        <button class="saveBtn">Save</button>
+                    </div>
+                </div>
+            `;
+
+            feed.prepend(postElement); // Add new post to the top of the feed
+
+            // Add event listeners to the newly created buttons
+            setupPostActions(postElement, post);
+        }
+
+        // Function to update a post in the feed
+        function updatePostInFeed(post) {
+            const postElement = document.querySelector(`[data-post-id="${post.id}"]`);
+            if (postElement) {
+                postElement.querySelector('p').innerText = post.content;
+                if (post.image) {
+                    let postImage = postElement.querySelector('img');
+                    if (!postImage) {
+                        postImage = document.createElement('img');
+                        postImage.classList.add('w-full', 'rounded-lg');
+                        postElement.appendChild(postImage);
+                    }
+                    postImage.src = post.image;
+                }
+            }
+        }
+
+        // Set up event listeners for actions (like, comment, menu options)
+        function setupPostActions(postElement, post) {
+            const menuBtn = postElement.querySelector('.menuBtn');
+            const likeBtn = postElement.querySelector('.likeBtn');
+            const commentBtn = postElement.querySelector('.commentBtn');
+            const shareBtn = postElement.querySelector('.shareBtn');
+            const saveBtn = postElement.querySelector('.saveBtn');
+
+            // Show menu on click
+            menuBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                menuPopup.classList.remove('hidden');
+                const rect = menuBtn.getBoundingClientRect();
+                menuPopup.style.top = `${rect.bottom + window.scrollY}px`;
+                menuPopup.style.left = `${rect.right + window.scrollX - menuPopup.offsetWidth}px`;
+                currentEditPost = post; // Set the current post to edit/delete
+            });
+
+            // Handle "Like" button
+            likeBtn.addEventListener('click', () => {
+                alert('Post liked!');
+            });
+
+            // Handle "Comment" button
+            commentBtn.addEventListener('click', () => {
+                alert('Comment on post!');
+            });
+
+            // Handle "Share" button
+            shareBtn.addEventListener('click', () => {
+                alert('Post shared!');
+            });
+
+            // Handle "Save" button
+            saveBtn.addEventListener('click', () => {
+                alert('Post saved!');
+            });
+        }
+
+        // Handle "Edit" button from menu
+        document.getElementById('editPostBtn').addEventListener('click', () => {
+            if (currentEditPost) {
+                document.getElementById('postContent').value = currentEditPost.content;
+                postModal.classList.remove('hidden');
+            }
+        });
+
+        // Handle "Delete" button from menu
+        document.getElementById('deletePostBtn').addEventListener('click', () => {
+            if (currentEditPost) {
+                const postElement = document.querySelector(`[data-post-id="${currentEditPost.id}"]`);
+                if (postElement) {
+                    postElement.remove();
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

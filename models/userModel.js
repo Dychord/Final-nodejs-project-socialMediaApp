@@ -15,22 +15,22 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    followers: {
-        type: Array,
-        default: []
-    },
-    following: {
-        type: Array,
-        default: []
-    },
-    myPosts:{
-        type: Array,
-        default:[]
-    },
-    requests:{
-        type: Array,
-        default:[]
-    }
-})
+    followers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    following: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
+    myPosts: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Post'
+    }],
+    requests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
+}, { timestamps: true });
 
-module.exports = mongoose.model("user", userSchema)
+module.exports = mongoose.model("User", userSchema);

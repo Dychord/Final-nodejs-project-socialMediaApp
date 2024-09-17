@@ -12,10 +12,12 @@
             </button> -->
             <span><i id="notifyBtn" class="fa-solid fa-bell text-xl text-blue-800"></i></span>
             
-            <button class="ml-4 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">                    
+            <button id="createPostBtn" class="ml-4 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">                    
                 New Post
             </button>
         </div>
+
+        <%- include('./postPopup', {user}) %>
 
         <!-- Notification Popup -->
         <div id="notificationPopup"
@@ -97,63 +99,68 @@
 
         <!-- Feed -->
         <div class="flex flex-col gap-7">
-            <div class="bg-white rounded-lg drop-shadow-md p-4">
-                <!-- Post Section -->
-                <div class="mb-4">
-                    <!-- User Info -->
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
-                            <img src="https://via.placeholder.com/150" alt="Profile Image"
-                                class="object-cover w-full h-full">
-                        </div>
-                        <div>
-                            <h2 class="text-md font-semibold">Name</h2>
-                            <h3 class="text-sm text-gray-500">username</h3>
-                        </div>
-                    </div>
-
-                    <!-- Post Image -->
-                    <div class="mb-4">
-                        <img src="https://plus.unsplash.com/premium_photo-1723826751660-717811d0fbc6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="Post Image" class="w-full rounded-lg" />
-                    </div>
-
-                    <!-- Post Description -->
-                    <div class="mb-4">
-                        <p class="text-gray-800">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia obcaecati dolorem
-                            perspiciatis voluptates
-                            accusantium dicta? At ullam, fugiat expedita vero obcaecati itaque accusantium ab
-                            laudantium
-                            natus delectus
-                            hic quasi tempore.
-                            <a href="#" class="text-blue-600 hover:underline">read more...</a>
-                        </p>
-                    </div>
-
-                    <!-- Post Actions: Likes, Comments, Save -->
-                    <div class="flex items-center justify-between text-gray-600">
-                        <!-- Likes and Comments -->
-                        <div class="flex items-center gap-6">
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-heart"></i>
-                                <span>10 Likes</span>
+            <% if (posts.length > 0) { %>
+                <% posts.forEach(post => { %>
+                    <% if (user.myPosts.includes(post._id.toString()) || user.following.some(u => u._id.toString() === post.userId.toString())) { %>
+                        <div class="bg-white rounded-lg drop-shadow-md p-4 mb-4">
+                            <!-- Post Section -->
+                            <div class="mb-4">
+                                <!-- User Info -->
+                                <div class="flex items-center gap-4 mb-4">
+                                    <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                                        <img src="https://via.placeholder.com/150" alt="Profile Image" class="object-cover w-full h-full">
+                                    </div>
+                                    <div>
+                                        <h2 class="text-md font-semibold"><%= post.userId.username %></h2>
+                                        <h3 class="text-sm text-gray-500"><%= post.userId.email %></h3>
+                                    </div>
+                                </div>
+                                <!-- Post Description -->
+                                <div class="mb-4">
+                                    <p class="text-gray-800">
+                                        <%= post.desc %>
+                                        <!-- <a href="#" class="text-blue-600 hover:underline">read more...</a> -->
+                                    </p>
+                                </div>
+                                <!-- Post Image -->
+                                <% if (post.img && post.img.data) { %>
+                                    <div class="mb-4">
+                                        <img src="/dashboard/post/images/<%= post._id %>" alt="Post Image" class="w-full rounded-lg" />
+                                    </div>
+                                <% } %>
+            
+                                
+            
+                                <!-- Post Actions: Likes, Comments, Save -->
+                                <div class="flex items-center justify-between text-gray-600">
+                                    <!-- Likes and Comments -->
+                                    <div class="flex items-center gap-6">
+                                        <div class="flex items-center gap-2">
+                                            <i class="fas fa-heart"></i>
+                                            <span>10 Likes</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <i class="fas fa-comment"></i>
+                                            <span>5 Comments</span>
+                                        </div>
+                                    </div>
+            
+                                    <!-- Save Post -->
+                                    <div class="flex items-center gap-5 cursor-pointer">
+                                        <i class="fas fa-bookmark"></i>
+                                        <h1>Save post</h1>
+                                        <i class="fa-solid fa-share"></i>
+                                        <h1>Share post</h1>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex items-center gap-2">
-                                <i class="fas fa-comment"></i>
-                                <span>5 Comments</span>
-                            </div>
                         </div>
-
-                        <!-- Save Post -->
-                        <div class="flex items-center gap-5 cursor-pointer">
-                            <i class="fas fa-bookmark"></i>
-                            <h1>Save post</h1>
-                            <i class="fa-solid fa-share"></i>
-                            <h1>Share post</h1>
-                        </div>
-                    </div>
+                    <% } %>
+                <% }) %>
+            <% } else { %>
+                <div class="bg-white rounded-lg drop-shadow-md p-4">
+                    <p class="text-gray-800">You need to create a post first or follow someone to see their posts here.</p>
                 </div>
-            </div>
+            <% } %>
         </div>
     </div>

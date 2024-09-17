@@ -3,16 +3,18 @@ const mongoose = require("mongoose")
 mongoose.connect("mongodb://127.0.0.1:27017/Final-nodejs-project").then((res)=> console.log("Post DB connected"))
 
 const postSchema = new mongoose.Schema({
-    userId:{
-        type: String,
-        required: true
+    userId: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true 
     },
     desc:{
         type: String,
         max:500
     },
-    img:{
-        type: String,    
+    img: {
+        data: Buffer,       // Store image data as binary
+        contentType: String // Store the MIME type of the image
     },
     likes:{
         type:Array,

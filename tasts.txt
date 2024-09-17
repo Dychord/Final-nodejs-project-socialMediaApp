@@ -1,7 +1,55 @@
-crud for user
-crud for posts
+<div class="mb-4">
+                    <!-- User Info -->
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                            <img src="https://via.placeholder.com/150" alt="Profile Image"
+                                class="object-cover w-full h-full">
+                        </div>
+                        <div>
+                            <h2 class="text-md font-semibold">Name</h2>
+                            <h3 class="text-sm text-gray-500">username</h3>
+                        </div>
+                    </div>
 
-advanced api's
-follow unfollow
-like dislike
-comment
+                    <!-- Post Image -->
+                    <div class="mb-4">
+                        <img src=""
+                            alt="Post Image" class="w-full rounded-lg" />
+                    </div>
+
+                    <!-- Post Description -->
+                    <div class="mb-4">
+                        <p class="text-gray-800">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia obcaecati dolorem
+                            perspiciatis voluptates
+                            accusantium dicta? At ullam, fugiat expedita vero obcaecati itaque accusantium ab
+                            laudantium
+                            natus delectus
+                            hic quasi tempore.
+                            <a href="#" class="text-blue-600 hover:underline">read more...</a>
+                        </p>
+                    </div>
+
+                    <!-- Post Actions: Likes, Comments, Save -->
+                    <div class="flex items-center justify-between text-gray-600">
+                        <!-- Likes and Comments -->
+                        <div class="flex items-center gap-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-heart"></i>
+                                <span>10 Likes</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-comment"></i>
+                                <span>5 Comments</span>
+                            </div>
+                        </div>
+
+                        <!-- Save Post -->
+                        <div class="flex items-center gap-5 cursor-pointer">
+                            <i class="fas fa-bookmark"></i>
+                            <h1>Save post</h1>
+                            <i class="fa-solid fa-share"></i>
+                            <h1>Share post</h1>
+                        </div>
+                    </div>
+                </div>
