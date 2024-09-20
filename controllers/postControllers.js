@@ -135,6 +135,19 @@ router.post("/save/:id", async (req, res) => {
     }
 })
 
+// -----------------delete post---------------
+router.post("/delete/:id", async (req, res) => {
+    const post = await postModel.findById(req.params.id)
+    const user = await userModel.findById(req.session.userId)
+    if(post.userId.toString() === user._id.toString()){
+        await postModel.findByIdAndDelete(req.params.id)
+        res.redirect("/dashboard")
+    }else{
+        res.send("You can't delete this post")
+    }
+})
+
+
 
 
 

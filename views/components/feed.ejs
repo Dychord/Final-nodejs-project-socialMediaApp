@@ -109,11 +109,18 @@
                                     <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
                                         <img src="https://via.placeholder.com/150" alt="Profile Image" class="object-cover w-full h-full">
                                     </div>
-                                    <div>
+                                    <div class="flex-1">
                                         <h2 class="text-md font-semibold"><%= post.userId.username %></h2>
                                         <h3 class="text-sm text-gray-500"><%= post.userId.email %></h3>
                                     </div>
+                                    <form action="/dashboard/post/delete/<%= post._id %>" method="POST">
+                                        <button>
+                                            <i class="fa-solid fa-trash cursor-pointer"></i>
+                                        </button>
+                                    </form>
+                                        
                                 </div>
+                                
                                 <!-- Post Description -->
                                 <div class="mb-4">
                                     <p class="text-gray-800"><%= post.desc %></p>
