@@ -1,7 +1,6 @@
 const userModel = require("../models/userModel")
 const router = require("express").Router()
 
-
 router.post("/follow/:id", async (req,res)=>{
     let anotherUser = await userModel.findById(req.params.id)
     let currentUser = await userModel.findById(req.session.userId)
@@ -28,7 +27,7 @@ router.post("/unfollow/:id", async (req,res)=>{
         else{
             await currentUser.updateOne({$pull: {following: anotherUser._id}})
             await anotherUser.updateOne({$pull: {followers: currentUser._id}})
-            return res.send(`You've unfollowed ${anotherUser.username} `)
+            return res.redirect("/dashboard")
         }
     }
 })

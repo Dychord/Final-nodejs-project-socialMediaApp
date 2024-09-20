@@ -1,0 +1,23 @@
+<div id="followingList" class="hidden relative flex justify-center">
+    <div class="flex flex-col gap-4 items-center bg-zinc-200 p-3 rounded-md shadow-sm absolute translate-y-64 w-[90%]">
+        <% following.forEach(users => { %> 
+            <!-- Single User Profile -->
+            <div class="flex items-center justify-between w-full bg-white p-3 rounded-md shadow-md">
+                <!-- Profile Image -->
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
+                        <img src="https://via.placeholder.com/150" alt="Profile Image" class="object-cover w-full h-full">
+                    </div>
+                    <!-- Name and Username -->
+                    <div>
+                        <h2 class="text-md font-semibold"><%= users.username %></h2>
+                    </div>
+                </div>
+                <!-- Remove Button -->
+                <form action="/dashboard/user/unfollow/<%= users._id %>" method="POST" class="cursor-pointer">
+                    <button type="submit" class="px-2 py-1 bg-red-600 text-white text-sm font-semibold rounded-lg">unfollow</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</div>

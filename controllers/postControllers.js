@@ -50,6 +50,8 @@ router.get('/images/:id', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
+
+
 router.post("/:id/comments", async (req, res) => {
     const postId = req.params.id;
     const { text } = req.body;
@@ -91,35 +93,10 @@ router.post("/:id/comments/delete", async (req, res) => {
     res.redirect("/dashboard")
 })
 
-// router.post("/:id/comments", async (req,res)=>{
-//     const postId = req.params.id;
-//     const { text } = req.body;
-//     const userId = req.session.userId;
+// ---------------Likes----------------
 
-//     let user = await userModel.findById(req.session.userId)
-
-//     if(!user) res.send("You don't exists, you need to login first")
-//     else{
-//         let post = await postModel.findOneAndUpdate(
-//             postId,
-//             {
-//                 $push: {
-//                     comments: {
-//                         userId,
-//                         text,
-//                         timestamp: new Date()
-//                     }
-//                 }
-//             },
-//             { new: true }
-//         )
-//         if (!post) {
-//             return res.status(404).json({ error: "Post not found" });
-//         }
-//         res.redirect("/login")
-//     }
-//     return res.redirect("/dashboard");
-
+// router.post("/like/:id", async (req, res) => {
+//     res.send("like")
 // })
 
 

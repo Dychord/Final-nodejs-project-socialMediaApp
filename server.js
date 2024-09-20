@@ -23,7 +23,7 @@ app.use("/dashboard/", require("./routes/postRoutes"))
 
 app.use("/", require("./auth/userAuth"))
 
-app.use("/", require("./controllers/userControllers"))
+app.use("/dashboard/user", require("./controllers/userControllers"))
 app.use("/dashboard/post", require("./controllers/postControllers"))
 
 app.listen(3000, ()=> console.log("server running on port 3000"))

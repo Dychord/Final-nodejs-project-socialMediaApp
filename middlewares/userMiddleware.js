@@ -3,8 +3,8 @@ const isAuth = (req,res,next)=>{
         next()
     }
     else{
-        res.send("You need to login in order to access dashboard")
-    }
+        res.redirect('/login')
+}
 }
 
 module.exports = isAuth
