@@ -100,7 +100,7 @@
         <div class="flex flex-col gap-7">
             <% if (posts.length > 0) { %>
                 <% posts.forEach(post => { %>
-                    <% if (user.myPosts.includes(post._id.toString()) || user.following.some(follow => follow._id.equals(post.userId._id))) { %>
+                    <% if (post.userId && (user.myPosts.includes(post._id.toString()) || user.following.some(follow => follow._id.equals(post.userId._id)))) { %>
                         <div class="bg-white rounded-lg drop-shadow-md p-4 mb-4">
                             <!-- Post Section -->
                             <div class="mb-4">
@@ -128,8 +128,16 @@
                                 <div class="flex items-center justify-between text-gray-600">
                                     <div class="flex items-center gap-6">
                                         <div class="flex items-center gap-2">
-                                            <i class="fas fa-heart"></i>
-                                            <span><%= post.likes.length %> Likes</span>
+                                            <form action="/dashboard/post/like/<%= post._id %>" method="POST">
+                                                <button type="submit">
+                                                    <% if (post.likes.includes(user._id)) { %>
+                                                        <i class="fas fa-heart text-red-500"></i>
+                                                    <% } else { %>
+                                                        <i class="fas fa-heart"></i>
+                                                    <% } %>
+                                                    <%= post.likes.length %> Likes
+                                                </button>
+                                            </form>
                                         </div>
                                         <div class="flex items-center gap-2">
                                             <i class="fas fa-comment"></i>
@@ -137,8 +145,17 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-5 cursor-pointer">
-                                        <i class="fas fa-bookmark"></i>
-                                        <h1>Save post</h1>
+                                        <form action="/dashboard/post/save/<%= post._id %>" method="POST">
+                                            <button type="submit" class="flex items-center space-x-2">
+                                                <% if (user.savedPosts.includes(post._id)) { %>
+                                                    <i class="fas fa-bookmark text-blue-500"></i>
+                                                    <h1>Saved</h1>
+                                                <% } else { %>
+                                                    <i class="fas fa-bookmark"></i>
+                                                    <h1>Save</h1>
+                                                <% } %>
+                                            </button>
+                                        </form>
                                         <i class="fa-solid fa-share"></i>
                                         <h1>Share post</h1>
                                     </div>
@@ -147,7 +164,6 @@
                         </div>
                     <% } %>
                 <% }) %>
-                <!-- Not working -->
             <% } else { %>
                 <div class="bg-white rounded-lg drop-shadow-md p-4">
                     <p class="text-gray-800">
@@ -161,6 +177,7 @@
                     </p>
                 </div>
             <% } %>
+            
         </div>
         
         

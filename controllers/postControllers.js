@@ -95,9 +95,45 @@ router.post("/:id/comments/delete", async (req, res) => {
 
 // ---------------Likes----------------
 
-// router.post("/like/:id", async (req, res) => {
-//     res.send("like")
-// })
+router.post("/like/:id", async (req, res) => {
+    const user = await userModel.findById(req.session.userId)
+    const post = await postModel.findById(req.params.id)
+
+    try{
+        if(post.likes.includes(user._id)){
+            await postModel.updateOne({_id: req.params.id}, {
+                $pull: {likes: user._id}
+            })
+            res.redirect("/dashboard")
+        }else{
+            await postModel.updateOne({_id: req.params.id}, {
+                $push: {likes: user._id}
+            })
+            res.redirect("/dashboard")
+        }
+    }
+    catch(error){
+        res.send(error)
+    }
+})
+
+// ---------------Saved posts----------------
+router.post("/save/:id", async (req, res) => {
+    const user = await userModel.findById(req.session.userId)
+    const post = await postModel.findById(req.params.id)
+
+    if(user.savedPosts.includes(post._id)){
+        await userModel.updateOne({_id: req.session.userId}, {
+            $pull: {savedPosts: post._id}
+        })
+        res.redirect("/dashboard")
+    }else{
+        await userModel.updateOne({_id: req.session.userId}, {
+            $push: {savedPosts: post._id}
+        })
+        res.redirect("/dashboard")
+    }
+})
 
 
 

@@ -30,7 +30,11 @@ const userSchema = new mongoose.Schema({
     requests: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
-    }]
+    }],
+    savedPosts: {
+        type: Array,
+        default: []
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model("User", userSchema);
