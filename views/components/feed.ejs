@@ -1,10 +1,11 @@
-<!-- Feed -->
+<div class="flex flex-col items-center justify-start w-[35%]">
+        <!-- Feed -->
     <!-- Main content area -->
-    <div class="w-[50%] p-6 rounded-lg shadow-md overflow-y-scroll h-screen bg-white ">
+    <div class="w-full py-4 px-3 mt-5 flex flex-col  rounded-lg border border-slate-200 overflow-y-scroll bg-white mb-4">
         <!-- Search and Create Post -->
-        <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center justify-between ">
             <input type="text" placeholder="Search..."
-                class="w-[50%] border-2 border-gray-300 p-2 rounded-md focus:outline-none focus:border-blue-500" />
+                class="w-[50%] border-2 border-gray-300 px-2 py-1 rounded-md focus:outline-none focus:border-blue-500" />
             <!-- Notification Button -->
             <!-- <button id="notifyBtn"
                 class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-200 focus:outline-none">
@@ -45,65 +46,52 @@
                 </div>
             </div>
         </div>
+    </div>
 
-
+<!-- ---------------------------------------------------- -->
+<!-- <div class="w-full py-4 px-4  rounded-lg border border-slate-200 overflow-y-scroll bg-white mb-4"> -->
         <!-- Stories Section -->
-        <div class="flex items-center justify-between mb-4">
-            <h1 class="text-xl font-semibold">Stories</h1>
-            <h3 class="text-blue-600 cursor-pointer hover:underline">Watch All</h3>
-        </div>
+        <!-- <div class="flex items-center justify-between mb-4"> -->
+            <!-- <h1 class="text-md font-semibold">Stories</h1>
+            <h3 class="text-blue-600 cursor-pointer hover:underline">Watch All</h3> -->
+        <!-- </div> -->
 
 
         <!-- Stories with Horizontal Scroll -->
-        <div class="flex gap-7 mb-6 overflow-x-auto whitespace-nowrap custom-scrollbar ">
+        <!-- <div class="flex gap-7 mb-2 overflow-x-auto whitespace-nowrap custom-scrollbar "> -->
             <!-- Story 1 -->
-            <div class="flex flex-col flex-none items-center">
+            <!-- <div class="flex flex-col flex-none items-center">
                 <img src="https://via.placeholder.com/80" alt="Add Story"
-                    class="h-20 w-20 rounded-full bg-gray-300">
-                <h3 class="font-bold mt-2">Add Story</h3>
-            </div>
-            <!-- Story 2 -->
-            <div class="flex flex-col flex-none items-center">
-                <img src="https://via.placeholder.com/80" alt="Glason" class="h-20 w-20 rounded-full bg-gray-300">
-                <h3 class="font-bold mt-2">Glason</h3>
-            </div>
-            <!-- Story 3 -->
-            <div class="flex flex-col flex-none items-center">
-                <img src="https://via.placeholder.com/80" alt="Amber" class="h-20 w-20 rounded-full bg-gray-300">
-                <h3 class="font-bold mt-2">Amber</h3>
-            </div>
-            <!-- Story 4 -->
-            <div class="flex flex-col flex-none items-center">
-                <img src="https://via.placeholder.com/80" alt="Akima" class="h-20 w-20 rounded-full bg-gray-300">
-                <h3 class="font-bold mt-2">Akima</h3>
-            </div>
-            <!-- Story 4 -->
-            <div class="flex flex-col flex-none items-center">
-                <img src="https://via.placeholder.com/80" alt="Akima" class="h-20 w-20 rounded-full bg-gray-300">
-                <h3 class="font-bold mt-2">Akima</h3>
-            </div>
+                    class="h-16 w-16 rounded-full bg-gray-300">
+                <h3 class="font-semibold mt-2">Add Story</h3>
+            </div> -->
+            
 
 
             <!-- Add more stories here -->
-        </div>
-
+        <!-- </div> -->
+<!-- </div> -->
+<!-- ---------------------------------------------------- -->
+<!-- <div class="w-full py-2 px-4 rounded-lg overflow-y-scroll border border-slate-200 bg-white mb-4"> -->
 
         <!-- Feed Buttons -->
-        <div class="flex items-center justify-between mb-6">
+        <!-- <div class="flex items-center justify-between ">
             <h1 class="text-xl font-semibold">Feeds</h1>
             <div class="flex gap-4">
                 <button class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Popular</button>
                 <button class="bg-gray-200 text-gray-800 py-2 px-4 rounded-md hover:bg-gray-300">Latest</button>
             </div>
-        </div>
+        </div> -->
+<!-- </div> -->
+<!-- ---------------------------------------------------- -->
 
         <div class="flex flex-col gap-7">
             <% if (posts.length > 0) { %>
                 <% posts.forEach(post => { %>
                     <% if (post.userId && (user.myPosts.includes(post._id.toString()) || user.following.some(follow => follow._id.equals(post.userId._id)))) { %>
-                        <div class="bg-white rounded-lg drop-shadow-md p-4 mb-4">
+                        <!-- <div class="bg-white rounded-lg drop-shadow-md p-4 mb-4"> -->
                             <!-- Post Section -->
-                            <div class="mb-4">
+                            <div class="bg-white p-3 rounded-xl border border-slate-200">
                                 <!-- User Info -->
                                 <div class="flex items-center gap-4 mb-4">
                                     <div class="w-12 h-12 bg-sky-400 rounded-full overflow-hidden">
@@ -114,11 +102,12 @@
                                         <h3 class="text-sm text-gray-500"><%= post.userId.email %></h3>
                                     </div>
                                     <form action="/dashboard/post/delete/<%= post._id %>" method="POST">
-                                        <button>
-                                            <i class="fa-solid fa-trash cursor-pointer"></i>
-                                        </button>
+                                        <% if (post.userId.toString() !== user._id.toString()) { %>
+                                            <button type="submit">
+                                                <i class="fa-solid fa-trash cursor-pointer"></i>
+                                            </button>
+                                        <% } %>
                                     </form>
-                                        
                                 </div>
                                 
                                 <!-- Post Description -->
@@ -168,7 +157,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        <!-- </div> -->
                     <% } %>
                 <% }) %>
             <% } else { %>
@@ -187,7 +176,4 @@
             
         </div>
         
-        
-        
-        
-    </div>
+</div>
