@@ -42,7 +42,12 @@ router.get("/profile", isAuth,async (req,res)=>{
 //     if(!req.session.userId){
 //         req.session.userId = '66e72eb8a8b9d81509a63d56'
 // }
-    res.render("profile", {currentRoute : 'profile'})
+        const user = await userModel.findById(req.session.userId)
+        const posts = await postModel.find().populate('userId', 'username email').sort({ createdAt: -1 }).exec();
+        const allUsers = await userModel.find().exec();
+        const following = await userModel.find({ _id: { $in: user.following } }).exec()
+
+    res.render("profile", {currentRoute : 'profile', user, posts, allUsers, following })
 })
 router.get("/posts", isAuth,async (req,res)=>{
 //     if(!req.session.userId){
