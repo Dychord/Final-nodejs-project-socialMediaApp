@@ -16,12 +16,11 @@ router.post("/create/:userid", upload.single('img'), async (req, res) => {
             userId: req.params.userid,
             desc: desc,
             img: req.file ? {
-                data: req.file.buffer,       // Image data as buffer
-                contentType: req.file.mimetype // Image MIME type
-            } : undefined // No image if file is not provided
+                data: req.file.buffer,       
+                contentType: req.file.mimetype
+            } : undefined 
         });
 
-        // Save the post to the database
         await newPost.save();
         // Update user's posts
         await userModel.updateOne(
@@ -30,8 +29,12 @@ router.post("/create/:userid", upload.single('img'), async (req, res) => {
             { new: true }
         );
 
-        // Redirect or send response
-        res.redirect("/dashboard"); // or res.status(201).json(newPost);
+        const referer = req.headers.referer || '';
+        if (referer.includes("/profile")) {
+            res.redirect("/profile");
+        } else {
+            res.redirect("/dashboard");
+        }
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
